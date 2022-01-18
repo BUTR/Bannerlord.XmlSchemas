@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://github.com/BUTR/Bannerlord.XmlSchemas" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Module">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Name">
+          <xs:complexType>
+            <xs:attribute name="value" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Id">
+          <xs:complexType>
+            <xs:attribute name="value" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Version">
+          <xs:complexType>
+            <xs:attribute name="value" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Official">
+          <xs:complexType>
+            <xs:attribute name="value" type="xs:boolean" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DefaultModule">
+          <xs:complexType>
+            <xs:attribute name="value" type="xs:boolean" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SingleplayerModule">
+          <xs:complexType>
+            <xs:attribute name="value" type="xs:boolean" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MultiplayerModule">
+          <xs:complexType>
+            <xs:attribute name="value" type="xs:boolean" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DependedModules">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="DependedModule">
+                <xs:complexType>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="DependentVersion" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DependedModuleMetadatas">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="DependedModuleMetadata">
+                <xs:complexType>
+                  <xs:attribute name="id" type="xs:string" use="required" />
+                  <xs:attribute name="order" type="xs:string" use="required" />
+                  <xs:attribute name="version" type="xs:string" use="required" />
+                  <xs:attribute name="optional" type="xs:boolean" use="optional" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SubModules">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SubModule">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Name">
+                      <xs:complexType>
+                        <xs:attribute name="value" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DLLName">
+                      <xs:complexType>
+                        <xs:attribute name="value" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="SubModuleClassType">
+                      <xs:complexType>
+                        <xs:attribute name="value" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Tags">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Tag">
+                            <xs:complexType>
+                              <xs:attribute name="key" type="xs:string" use="required" />
+                              <xs:attribute name="value" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
