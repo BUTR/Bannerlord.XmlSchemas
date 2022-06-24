@@ -50,7 +50,7 @@
                 <xs:complexType>
                   <xs:attribute name="Id" type="xs:string" use="required" />
                   <xs:attribute name="DependentVersion" type="xs:string" use="optional" />
-                  <xs:attribute name="Optional" type="xs:bool" use="optional" />
+                  <xs:attribute name="Optional" type="xs:boolean" use="optional" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
