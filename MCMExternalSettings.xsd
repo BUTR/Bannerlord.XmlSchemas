@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="Settings" type="SettingsType"/>
+  
+  <xs:complexType name="SettingsType">
+    <xs:sequence>
+      <xs:element type="PropertiesType" name="Properties"/>
+      <xs:element type="PropertyGroupsType" name="PropertyGroups"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="Id"/>
+    <xs:attribute type="xs:string" name="DisplayName"/>
+    <xs:attribute type="xs:string" name="FolderName"/>
+    <xs:attribute type="xs:string" name="SubFolder"/>
+    <xs:attribute type="xs:int" name="UIVersion"/>
+    <xs:attribute type="xs:string" name="SubGroupDelimiter"/>
+    <xs:attribute type="xs:string" name="FormatType"/>
+  </xs:complexType>
+  
+  <xs:complexType name="PropertiesType">
+    <xs:sequence>
+      <xs:element type="PropertyTextType" name="PropertyText" minOccurs="0"/>
+      <xs:element type="PropertyBoolType" name="PropertyBool" minOccurs="0"/>
+      <xs:element type="PropertyIntegerType" name="PropertyInteger" minOccurs="0"/>
+      <xs:element type="PropertyFloatingIntegerType" name="PropertyFloatingInteger" minOccurs="0"/>
+      <xs:element type="PropertyDropdownType" name="PropertyDropdown" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="PropertyGroupType">
+    <xs:sequence>
+      <xs:element type="PropertiesType" name="Properties"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="DisplayName" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="PropertyGroupsType">
+    <xs:sequence>
+      <xs:element type="PropertyGroupType" name="PropertyGroup" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ValueTextType">
+    <xs:attribute type="xs:string" name="Value" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="ValueBoolType">
+    <xs:attribute type="xs:boolean" name="Value" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="ValueIntegerType">
+    <xs:attribute type="xs:int" name="Value" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="ValueFloatingIntegerType">
+    <xs:attribute type="xs:float" name="Value" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="ValueDropdownType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Value" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="PropertyBaseType" abstract="true">
+    <xs:attribute type="xs:string" name="Id" use="optional"/>
+    <xs:attribute type="xs:string" name="DisplayName" use="optional"/>
+    <xs:attribute type="xs:int" name="Order" use="optional"/>
+    <xs:attribute type="xs:string" name="HintText" use="optional"/>
+    <xs:attribute type="xs:boolean" name="RequireRestart" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="PropertyTextType">
+    <xs:complexContent>
+      <xs:extension base="PropertyBaseType">
+        <xs:sequence>
+          <xs:element type="xs:string" name="Value" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PropertyBoolType">
+    <xs:complexContent>
+      <xs:extension base="PropertyBaseType">
+        <xs:sequence>
+          <xs:element type="xs:boolean" name="Value" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute type="xs:boolean" name="IsToggle" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PropertyIntegerType">
+    <xs:complexContent>
+      <xs:extension base="PropertyBaseType">
+        <xs:sequence>
+          <xs:element type="xs:int" name="Value" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute type="xs:int" name="MaxValue"/>
+        <xs:attribute type="xs:int" name="MinValue"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PropertyFloatingIntegerType">
+    <xs:complexContent>
+      <xs:extension base="PropertyBaseType">
+        <xs:sequence>
+          <xs:element type="xs:float" name="Value" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute type="xs:float" name="MaxValue"/>
+        <xs:attribute type="xs:float" name="MinValue"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PropertyDropdownType">
+    <xs:complexContent>
+      <xs:extension base="PropertyBaseType">
+        <xs:sequence>
+          <xs:element type="ValueDropdownType" name="Values" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute type="xs:int" name="SelectedIndex"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>
