@@ -20,12 +20,12 @@
         </xs:element>
         <xs:element name="Official">
           <xs:complexType>
-            <xs:attribute name="value" type="xs:boolean" use="required" />
+            <xs:attribute name="value" type="xs:boolean" use="optional" />
           </xs:complexType>
         </xs:element>
         <xs:element name="DefaultModule">
           <xs:complexType>
-            <xs:attribute name="value" type="xs:boolean" use="required" />
+            <xs:attribute name="value" type="xs:boolean" use="optional" />
           </xs:complexType>
         </xs:element>
         <xs:element name="SingleplayerModule">
@@ -38,13 +38,41 @@
             <xs:attribute name="value" type="xs:boolean" use="required" />
           </xs:complexType>
         </xs:element>
+        <xs:element name="Url">
+          <xs:complexType>
+            <xs:attribute name="value" type="xs:string" use="optional" />
+          </xs:complexType>
+        </xs:element>
         <xs:element name="DependedModules">
           <xs:complexType>
             <xs:sequence>
               <xs:element maxOccurs="unbounded" name="DependedModule">
                 <xs:complexType>
                   <xs:attribute name="Id" type="xs:string" use="required" />
-                  <xs:attribute name="DependentVersion" type="xs:string" use="required" />
+                  <xs:attribute name="DependentVersion" type="xs:string" use="optional" />
+                  <xs:attribute name="Optional" type="xs:bool" use="optional" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ModulesToLoadAfterThis">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="DependedModule">
+                <xs:complexType>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="IncompatibleModules">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="DependedModule">
+                <xs:complexType>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
@@ -83,6 +111,17 @@
                     <xs:element name="SubModuleClassType">
                       <xs:complexType>
                         <xs:attribute name="value" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Assemblies">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Assembly">
+                            <xs:complexType>
+                              <xs:attribute name="value" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
                       </xs:complexType>
                     </xs:element>
                     <xs:element name="Tags">
