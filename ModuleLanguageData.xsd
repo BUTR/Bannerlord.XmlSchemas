@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://github.com/BUTR/Bannerlord.XmlSchemas" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="LanguageData">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="LanguageFile">
-          <xs:complexType>
-            <xs:attribute name="xml_path" type="xs:string" use="required" />
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-      <xs:attribute name="id" type="xs:string" use="required" />
-      <xs:attribute name="name" type="xs:string" use="required" />
-      <xs:attribute name="subtitle_extension" type="xs:string" use="required" />
-      <xs:attribute name="supported_iso" type="xs:string" use="required" />
-      <xs:attribute name="under_development" type="xs:boolean" use="required" />
-    </xs:complexType>
-  </xs:element>
+<xs:schema attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           targetNamespace="https://github.com/BUTR/Bannerlord.XmlSchemas"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="LanguageData" type="LanguageDataType"/>
+  
+  <xs:complexType name="LanguageFileType">
+    <xs:attribute type="xs:string" name="xml_path" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="LanguageDataType">
+    <xs:sequence>
+      <xs:element type="LanguageFileType" name="LanguageFile" maxOccurs="unbounded" minOccurs="1"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id" use="required"/>
+    <xs:attribute type="xs:string" name="name" use="required"/>
+    <xs:attribute type="xs:string" name="subtitle_extension" use="required"/>
+    <xs:attribute type="xs:string" name="supported_iso" use="required"/>
+    <xs:attribute type="xs:boolean" name="under_development" use="required"/>
+  </xs:complexType>
 </xs:schema>
