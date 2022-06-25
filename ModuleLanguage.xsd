@@ -1,32 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://github.com/BUTR/Bannerlord.XmlSchemas" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="base">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="tags">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="tag">
-                <xs:complexType>
-                  <xs:attribute name="language" type="xs:string" use="required" />
-                </xs:complexType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="strings">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element maxOccurs="unbounded" name="string">
-                <xs:complexType>
-                  <xs:attribute name="id" type="xs:string" use="required" />
-                  <xs:attribute name="text" type="xs:string" use="required" />
-                </xs:complexType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="base" type="baseType"/>
+  
+  <xs:complexType name="tagType">
+    <xs:attribute type="xs:string" name="language"/>
+  </xs:complexType>
+  <xs:complexType name="tagsType">
+    <xs:sequence>
+      <xs:element type="tagType" name="tag"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="stringType">
+    <xs:attribute type="xs:string" name="id" use="required"/>
+    <xs:attribute type="xs:string" name="text" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="stringsType">
+    <xs:sequence>
+      <xs:element type="stringType" name="string" maxOccurs="unbounded" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="baseType">
+    <xs:sequence>
+      <xs:element type="tagsType" name="tags"/>
+      <xs:element type="stringsType" name="strings"/>
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>
