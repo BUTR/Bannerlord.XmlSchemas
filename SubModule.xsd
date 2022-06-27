@@ -43,9 +43,22 @@
     <xs:attribute type="xs:string" name="DependentVersion" use="optional"/>
     <xs:attribute type="xs:boolean" name="Optional" use="optional"/>
   </xs:complexType>
+  <xs:complexType name="ModuleWithIdType">
+    <xs:attribute type="xs:string" name="Id" use="required"/>
+  </xs:complexType>
   <xs:complexType name="DependedModulesType">
     <xs:sequence>
       <xs:element type="DependedModuleType" name="DependedModule" maxOccurs="unbounded" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ModulesToLoadAfterThisType">
+    <xs:sequence>
+      <xs:element type="ModuleWithIdType" name="Module" maxOccurs="unbounded" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IncompatibleModulesType">
+    <xs:sequence>
+      <xs:element type="ModuleWithIdType" name="Module" maxOccurs="unbounded" minOccurs="1"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="DependedModuleMetadataType">
@@ -128,49 +141,51 @@
   </xs:complexType>
   <xs:complexType name="ModuleType">
     <xs:sequence>
-      <xs:element type="IdType" name="Id"/>
-      <xs:element type="NameType" name="Name"/>
-      <xs:element type="VersionType" name="Version"/>
-      <xs:element type="OfficialType" name="Official"/>
-      <xs:element type="DefaultModuleType" name="DefaultModule"/>
-      <xs:element type="SingleplayerModuleType" name="SingleplayerModule">
+      <xs:element type="IdType" name="Id" minOccurs="1" maxOccurs="1"/>
+      <xs:element type="NameType" name="Name" minOccurs="1" maxOccurs="1"/>
+      <xs:element type="VersionType" name="Version" minOccurs="1" maxOccurs="1"/>
+      <xs:element type="OfficialType" name="Official" minOccurs="0" maxOccurs="1"/>
+      <xs:element type="DefaultModuleType" name="DefaultModule" minOccurs="0" maxOccurs="1"/>
+      <xs:element type="SingleplayerModuleType" name="SingleplayerModule" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>
             Used before e1.8.0
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element type="MultiplayerModuleType" name="MultiplayerModule">
+      <xs:element type="MultiplayerModuleType" name="MultiplayerModule" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>
             Used before e1.8.0
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element type="ModuleCategoryType" name="ModuleCategory">
+      <xs:element type="ModuleCategoryType" name="ModuleCategory" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>
             Used after e1.8.0
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element type="UrlType" name="Url">
+      <xs:element type="UrlType" name="Url" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>
             Community extension
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element type="DependedModulesType" name="DependedModules"/>
-      <xs:element type="DependedModuleMetadatasType" name="DependedModuleMetadatas">
+      <xs:element type="DependedModulesType" name="DependedModules" minOccurs="0" maxOccurs="1"/>
+      <xs:element type="ModulesToLoadAfterThisType" name="ModulesToLoadAfterThis" minOccurs="0" maxOccurs="1"/>
+      <xs:element type="IncompatibleModulesType" name="IncompatibleModules" minOccurs="0" maxOccurs="1"/>
+      <xs:element type="DependedModuleMetadatasType" name="DependedModuleMetadatas" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>
             Community extension
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element type="SubModulesType" name="SubModules"/>
-      <xs:element type="XmlsType" name="Xmls"/>
+      <xs:element type="SubModulesType" name="SubModules" minOccurs="0" maxOccurs="1"/>
+      <xs:element type="XmlsType" name="Xmls" minOccurs="0" maxOccurs="1"/>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
