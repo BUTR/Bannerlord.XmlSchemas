@@ -4,7 +4,7 @@
            targetNamespace="https://github.com/BUTR/Bannerlord.XmlSchemas"
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="base" type="baseType"/>
-  
+
   <xs:complexType name="tagType">
     <xs:attribute type="xs:string" name="language"/>
   </xs:complexType>
@@ -22,10 +22,26 @@
       <xs:element type="stringType" name="string" maxOccurs="unbounded" minOccurs="1"/>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="functionType">
+    <xs:attribute type="xs:string" name="functionName" use="required"/>
+    <xs:attribute type="xs:string" name="functionBody" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="functionsType">
+    <xs:sequence>
+      <xs:element type="functionType" name="function" maxOccurs="unbounded" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="baseType">
     <xs:sequence>
-      <xs:element type="tagsType" name="tags"/>
+      <xs:element type="tagsType" name="tags">
+        <xs:annotation>
+          <xs:documentation>
+            Used before e1.8.0
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element type="stringsType" name="strings"/>
+      <xs:element type="functionsType" name="functions"/>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
