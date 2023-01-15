@@ -14,26 +14,28 @@
   <xs:complexType name="VersionType">
     <xs:attribute type="xs:string" name="value" use="required"/>
   </xs:complexType>
-  <xs:complexType name="OfficialType">
-    <xs:attribute type="xs:boolean" name="value" use="required"/>
-  </xs:complexType>
   <xs:complexType name="DefaultModuleType">
-    <xs:attribute type="xs:boolean" name="value" use="required"/>
-  </xs:complexType>
-  <xs:complexType name="SingleplayerModuleType">
-    <xs:attribute type="xs:boolean" name="value" use="required"/>
-  </xs:complexType>
-  <xs:complexType name="MultiplayerModuleType">
     <xs:attribute type="xs:boolean" name="value" use="required"/>
   </xs:complexType>
   <xs:simpleType name="ModuleCategoryValueType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Singleplayer" />
       <xs:enumeration value="Multiplayer" />
+      <xs:enumeration value="Server" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="ModuleCategoryType">
     <xs:attribute type="ModuleCategoryValueType" name="value" use="required"/>
+  </xs:complexType>
+  <xs:simpleType name="ModuleTypeValueType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Official" />
+      <xs:enumeration value="OfficialOptional" />
+      <xs:enumeration value="Community" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ModuleTypeType">
+    <xs:attribute type="ModuleTypeValueType" name="value" use="required"/>
   </xs:complexType>
   <xs:complexType name="UrlType">
     <xs:attribute type="xs:string" name="value" use="required"/>
@@ -135,29 +137,9 @@
       <xs:element type="IdType" name="Id" minOccurs="1" maxOccurs="1"/>
       <xs:element type="NameType" name="Name" minOccurs="1" maxOccurs="1"/>
       <xs:element type="VersionType" name="Version" minOccurs="1" maxOccurs="1"/>
-      <xs:element type="OfficialType" name="Official" minOccurs="0" maxOccurs="1"/>
       <xs:element type="DefaultModuleType" name="DefaultModule" minOccurs="0" maxOccurs="1"/>
-      <xs:element type="SingleplayerModuleType" name="SingleplayerModule" minOccurs="0" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>
-            Used before e1.8.0
-          </xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element type="MultiplayerModuleType" name="MultiplayerModule" minOccurs="0" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>
-            Used before e1.8.0
-          </xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element type="ModuleCategoryType" name="ModuleCategory" minOccurs="0" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>
-            Used after e1.8.0
-          </xs:documentation>
-        </xs:annotation>
-      </xs:element>
+      <xs:element type="ModuleCategoryType" name="ModuleCategory" minOccurs="0" maxOccurs="1"/>
+      <xs:element type="ModuleTypeType" name="ModuleType" minOccurs="0" maxOccurs="1"/>
       <xs:element type="UrlType" name="Url" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>
