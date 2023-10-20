@@ -151,14 +151,14 @@
       <xs:element type="UrlType" name="Url" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>
-            Community extension
+            Community extension.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element type="UpdateInfoType" name="UpdateInfo" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>
-            Community extension
+            Community extension. Should either be 'NexusMods:%MODID%' or 'GitHub:%USER%/%REPO%'
           </xs:documentation>
         </xs:annotation>
       </xs:element>
@@ -168,7 +168,7 @@
       <xs:element type="DependedModuleMetadatasType" name="DependedModuleMetadatas" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>
-            Community extension
+            Community extension.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
