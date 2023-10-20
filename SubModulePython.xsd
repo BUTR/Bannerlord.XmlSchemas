@@ -39,6 +39,15 @@
   <xs:complexType name="UrlType">
     <xs:attribute type="xs:string" name="value" use="required"/>
   </xs:complexType>
+  <xs:simpleType name="UpdateInfoValueType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="NexusMods:[0-9]+" />
+      <xs:pattern value="GitHub:[a-zA-Z0-9.\-_]+/[a-zA-Z0-9.\-_]+" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="UpdateInfoType">
+    <xs:attribute type="UpdateInfoValueType" name="value" use="required"/>
+  </xs:complexType>
   <xs:complexType name="DependedModuleType">
     <xs:attribute type="xs:string" name="Id" use="required"/>
     <xs:attribute type="xs:string" name="DependentVersion" use="optional"/>
@@ -49,17 +58,17 @@
   </xs:complexType>
   <xs:complexType name="DependedModulesType">
     <xs:sequence>
-      <xs:element type="DependedModuleType" name="DependedModule" maxOccurs="unbounded" minOccurs="1"/>
+      <xs:element type="DependedModuleType" name="DependedModule" maxOccurs="unbounded" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ModulesToLoadAfterThisType">
     <xs:sequence>
-      <xs:element type="ModuleWithIdType" name="Module" maxOccurs="unbounded" minOccurs="1"/>
+      <xs:element type="ModuleWithIdType" name="Module" maxOccurs="unbounded" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="IncompatibleModulesType">
     <xs:sequence>
-      <xs:element type="ModuleWithIdType" name="Module" maxOccurs="unbounded" minOccurs="1"/>
+      <xs:element type="ModuleWithIdType" name="Module" maxOccurs="unbounded" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="DependedModuleMetadataOrderType">
@@ -77,7 +86,7 @@
   </xs:complexType>
   <xs:complexType name="DependedModuleMetadatasType">
     <xs:sequence>
-      <xs:element type="DependedModuleMetadataType" name="DependedModuleMetadata" maxOccurs="unbounded" minOccurs="1"/>
+      <xs:element type="DependedModuleMetadataType" name="DependedModuleMetadata" maxOccurs="unbounded" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ScriptNameType">
@@ -92,7 +101,7 @@
   </xs:complexType>
   <xs:complexType name="TagsType">
     <xs:sequence>
-      <xs:element type="TagType" name="Tag" minOccurs="1"/>
+      <xs:element type="TagType" name="Tag" maxOccurs="unbounded" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="SubModulePythonType">
@@ -105,7 +114,7 @@
   </xs:complexType>
   <xs:complexType name="SubModulesType">
     <xs:sequence>
-      <xs:element type="SubModulePythonType" name="SubModulePython" maxOccurs="unbounded" minOccurs="1"/>
+      <xs:element type="SubModulePythonType" name="SubModulePython" maxOccurs="unbounded" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="XmlNameType">
@@ -128,7 +137,7 @@
   </xs:complexType>
   <xs:complexType name="XmlsType">
     <xs:sequence>
-      <xs:element type="XmlNodeType" name="XmlNode" maxOccurs="unbounded" minOccurs="1"/>
+      <xs:element type="XmlNodeType" name="XmlNode" maxOccurs="unbounded" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ModuleType">
@@ -140,6 +149,13 @@
       <xs:element type="ModuleCategoryType" name="ModuleCategory" minOccurs="0" maxOccurs="1"/>
       <xs:element type="ModuleTypeType" name="ModuleType" minOccurs="0" maxOccurs="1"/>
       <xs:element type="UrlType" name="Url" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            Community extension
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element type="UpdateInfoType" name="UpdateInfo" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>
             Community extension
