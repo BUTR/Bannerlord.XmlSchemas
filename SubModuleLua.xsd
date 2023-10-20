@@ -101,7 +101,7 @@
   </xs:complexType>
   <xs:complexType name="TagsType">
     <xs:sequence>
-      <xs:element type="TagType" name="Tag" minOccurs="0"/>
+      <xs:element type="TagType" name="Tag" maxOccurs="unbounded" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="SubModuleLuaType">
