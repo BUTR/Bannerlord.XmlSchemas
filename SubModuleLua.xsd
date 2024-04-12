@@ -43,6 +43,8 @@
     <xs:restriction base="xs:string">
       <xs:pattern value="NexusMods:[0-9]+" />
       <xs:pattern value="GitHub:[a-zA-Z0-9.\-_]+/[a-zA-Z0-9.\-_]+" />
+      <xs:pattern value="NexusMods:[0-9]+;GitHub:[a-zA-Z0-9.\-_]+/[a-zA-Z0-9.\-_]+" />
+      <xs:pattern value="GitHub:[a-zA-Z0-9.\-_]+/[a-zA-Z0-9.\-_]+;NexusMods:[0-9]+" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="UpdateInfoType">
